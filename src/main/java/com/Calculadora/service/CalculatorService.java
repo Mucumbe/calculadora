@@ -4,39 +4,57 @@ import java.math.BigDecimal;
 
 import org.springframework.stereotype.Component;
 
+import com.Calculadora.domain.Result;
+
 @Component
 public class CalculatorService {
 	
-	public String sum(String firstValue,String secondValue ) {
+	private Result result;
+	
+	public CalculatorService() {
 		
-		BigDecimal fV= new BigDecimal(firstValue);
-		BigDecimal sV= new BigDecimal(secondValue);
-		
-		return fV.add(sV).toString();
+		result= new Result();
 	}
 	
-public String subtraction(String firstValue,String secondValue ) {
+	
+	public Result sum(String firstValue,String secondValue ) {
 		
 		BigDecimal fV= new BigDecimal(firstValue);
 		BigDecimal sV= new BigDecimal(secondValue);
 		
-		return fV.subtract(sV).toString();
+		result.setResult(fV.add(sV).toString());
+		
+		return result;
+	}
+	
+public Result subtraction(String firstValue,String secondValue ) {
+		
+		BigDecimal fV= new BigDecimal(firstValue);
+		BigDecimal sV= new BigDecimal(secondValue);
+		
+		result.setResult(fV.subtract(sV).toString());
+		
+		return result ;
 	}
 
-public String multiplication(String firstValue,String secondValue ) {
+public Result multiplication(String firstValue,String secondValue ) {
 	
 	BigDecimal fV= new BigDecimal(firstValue);
 	BigDecimal sV= new BigDecimal(secondValue);
 	
-	return fV.multiply(sV).toString();
+	result.setResult(fV.multiply(sV).toString());
+	
+	return result;
 }
 	
-public String division(String firstValue,String secondValue ) {
+public Result division(String firstValue,String secondValue ) {
 	
 	BigDecimal fV= new BigDecimal(firstValue);
 	BigDecimal sV= new BigDecimal(secondValue);
 	
-	return fV.divide(sV).toString();
+	result.setResult(fV.divide(sV).toString());
+	
+	return result;
 }	
 
     
