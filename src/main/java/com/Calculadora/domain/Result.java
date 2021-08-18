@@ -1,7 +1,8 @@
 package com.Calculadora.domain;
 
+import java.io.Serializable;
 
-public class Result {
+public class Result implements Serializable {
 
 	private String result;
 	

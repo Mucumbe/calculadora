@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.Calculadora.conection.RabbitMQConstant;
 import com.Calculadora.domain.Result;
 import com.Calculadora.service.CalculatorService;
+import com.Calculadora.service.RabbitMQService;
 
 @Controller
 public class CalculatorController {
@@ -17,6 +19,8 @@ public class CalculatorController {
 	private CalculatorService calculatorService;
 	Result result;
 	
+	@Autowired
+	private RabbitMQService rabbitMQService;
 	
 	@Autowired
 	public CalculatorController(CalculatorService calculatorService) {
@@ -38,6 +42,8 @@ public class CalculatorController {
 public ResponseEntity<?> sum(@RequestParam("a") String firstValue,@RequestParam("b") String secondValue){
 		
 	result=calculatorService.sum(firstValue, secondValue);
+	
+	this.rabbitMQService.sendMessage(RabbitMQConstant.ROW_RESULT, result);
 
 	return ResponseEntity.ok().body(result);
 }
@@ -48,6 +54,8 @@ public ResponseEntity<?> subtraction(@RequestParam("a") String firstValue,@Reque
 		
 	Result result=calculatorService.subtraction(firstValue, secondValue);
 
+	this.rabbitMQService.sendMessage(RabbitMQConstant.ROW_RESULT, result);
+	
 	return ResponseEntity.ok().body(result);
 	}
 
@@ -57,6 +65,8 @@ public ResponseEntity<?> multiplication(@RequestParam("a") String firstValue,@Re
 	
 	result=calculatorService.multiplication(firstValue, secondValue);
 	
+	this.rabbitMQService.sendMessage(RabbitMQConstant.ROW_RESULT, result);
+	
 	return ResponseEntity.ok().body(result);
 }
 
@@ -65,6 +75,8 @@ public ResponseEntity<?> multiplication(@RequestParam("a") String firstValue,@Re
 public ResponseEntity<?> division(@RequestParam("a") String firstValue,@RequestParam("b") String secondValue){
 	
 	result=calculatorService.division(firstValue, secondValue);
+	
+	this.rabbitMQService.sendMessage(RabbitMQConstant.ROW_RESULT, result);
 	
 	return ResponseEntity.ok().body(result);
 }
