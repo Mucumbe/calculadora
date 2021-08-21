@@ -11,14 +11,13 @@ import com.Calculadora.conection.RabbitMQConstant;
 import com.Calculadora.domain.Result;
 import com.Calculadora.service.CalculatorService;
 import com.Calculadora.service.RabbitMQService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 @Controller
 public class CalculatorController {
 	
-	@Autowired
-	private static final Logger LOGGER=LoggerFactory.getLogger(CalculatorController.class);
+	//@Autowired
+	//private static final Logger LOGGER=LoggerFactory.getLogger(CalculatorController.class);
 	
 	private CalculatorService calculatorService;
 	Result result;
@@ -48,53 +47,56 @@ public class CalculatorController {
 @ResponseBody
 public ResponseEntity<?> sum(@RequestParam("a") String firstValue,@RequestParam("b") String secondValue){
 		
-	LOGGER.trace("Execute Endpoit sum");
-	LOGGER.debug("Data : "+firstValue+"-"+secondValue);
+	//LOGGER.trace("Execute Endpoit sum");
+	//LOGGER.debug("Data : "+firstValue+"-"+secondValue);
 	
 	result=calculatorService.sum(firstValue, secondValue);
 	
 	this.rabbitMQService.sendMessage(RabbitMQConstant.ROW_RESULT, result);
-	LOGGER.info("success");
+	//LOGGER.info("success");
 
 	return ResponseEntity.ok().body(result);
 }
 
+
 @GetMapping("/subtraction")
 @ResponseBody
 public ResponseEntity<?> subtraction(@RequestParam("a") String firstValue,@RequestParam("b") String secondValue){
-	LOGGER.trace("Execute Endpoit subtraction");
-	LOGGER.debug("Data: "+firstValue+"-"+secondValue);
+	//LOGGER.trace("Execute Endpoit subtraction");
+	//LOGGER.debug("Data: "+firstValue+"-"+secondValue);
 		
 	Result result=calculatorService.subtraction(firstValue, secondValue);
 
 	this.rabbitMQService.sendMessage(RabbitMQConstant.ROW_RESULT, result);
-	LOGGER.info("success");
+	//LOGGER.info("success");
 	return ResponseEntity.ok().body(result);
 	}
+
 
 @GetMapping("multiplication")
 @ResponseBody
 public ResponseEntity<?> multiplication(@RequestParam("a") String firstValue,@RequestParam("b") String secondValue){
 	
-	LOGGER.trace("Execute Endpoit multiplication");
-	LOGGER.debug("Dados da execucao : "+firstValue+"-"+secondValue);
+	//LOGGER.trace("Execute Endpoit multiplication");
+	//LOGGER.debug("Dados da execucao : "+firstValue+"-"+secondValue);
 	
 	result=calculatorService.multiplication(firstValue, secondValue);
 	
 	this.rabbitMQService.sendMessage(RabbitMQConstant.ROW_RESULT, result);
-	LOGGER.info("success");
+	//LOGGER.info("success");
 	return ResponseEntity.ok().body(result);
 }
+
 
 @GetMapping("division")
 @ResponseBody
 public ResponseEntity<?> division(@RequestParam("a") String firstValue,@RequestParam("b") String secondValue){
-	LOGGER.trace("Execute Endpoit division");
-	LOGGER.debug("Dados da execucao : "+firstValue+"-"+secondValue);
+	//LOGGER.trace("Execute Endpoit division");
+	//LOGGER.debug("Dados da execucao : "+firstValue+"-"+secondValue);
 	result=calculatorService.division(firstValue, secondValue);
 	
 	this.rabbitMQService.sendMessage(RabbitMQConstant.ROW_RESULT, result);
-	LOGGER.info("success");
+	//LOGGER.info("success");
 	return ResponseEntity.ok().body(result);
 }
 	
