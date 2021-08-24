@@ -1,8 +1,11 @@
 package com.Calculadora.service;
 
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.Calculadora.domain.Result;
 
 @Service
 public class RabbitMQService {
@@ -14,4 +17,17 @@ public class RabbitMQService {
 		
 		this.rabbitTemplate.convertAndSend(nameRow,message);
 	}
+	
+	
+	
+	public void consumidor() {
+		
+		//String esult=(String)rabbitTemplate.receiveAndConvert("RESULT");
+		//System.out.println("kkkkkkkkk"+esult);
+		
+		
+		;
+	}
+	
+	
 }

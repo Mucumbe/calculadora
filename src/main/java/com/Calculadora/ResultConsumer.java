@@ -6,12 +6,14 @@ import org.springframework.stereotype.Component;
 import com.Calculadora.domain.Result;
 
 
-@Component
+//@Component
 public class ResultConsumer {
 
-	@RabbitListener(queues = "RESULT")
+	//@RabbitListener(queues = "RESULT")
 	private void consumidor(Result result) {
 		System.out.println("-----------------------------------------------------------------------------");
+		System.out.println(result.getId());
 		System.out.println(result.getResult());
+		
 	}
 }
