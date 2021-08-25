@@ -6,12 +6,19 @@ import org.springframework.stereotype.Component;
 import com.Calculadora.domain.Result;
 
 
-//@Component
+/**
+ * @author Blandino Junior Sibone Mucumbe
+ * Class responsible for implementing methods that consume messages in RabbitMQ
+ * */
+@Component
 public class ResultConsumer {
 
-	//@RabbitListener(queues = "RESULT")
+	/**
+	 * consume RabbitMQ message
+	 * */
+	@RabbitListener(queues = "RESULT")
 	private void consumidor(Result result) {
-		System.out.println("-----------------------------------------------------------------------------");
+		
 		System.out.println(result.getId());
 		System.out.println(result.getResult());
 		

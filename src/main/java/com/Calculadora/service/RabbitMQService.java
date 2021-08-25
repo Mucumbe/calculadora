@@ -7,9 +7,16 @@ import org.springframework.stereotype.Service;
 
 import com.Calculadora.domain.Result;
 
+/**
+ * @author Blandinop Junior sibone Mucumbe
+ * Class responsible for implementing services for sending and receiving messages in RAbbitMq
+ * */
 @Service
 public class RabbitMQService {
 
+	/**
+	 * Responsible for adding result to the message queue
+	 * */
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
 	
@@ -19,14 +26,12 @@ public class RabbitMQService {
 	}
 	
 	
-	
+	/**
+	 * Responsible for consuming messages on rabbitMQ
+	 * */
 	public void consumidor() {
 		
-		//String esult=(String)rabbitTemplate.receiveAndConvert("RESULT");
-		//System.out.println("kkkkkkkkk"+esult);
 		
-		
-		;
 	}
 	
 	

@@ -8,8 +8,11 @@ import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.stereotype.Component;
 
-
-
+/**
+* @author Danilo Caneschi
+* Protocol implementation responsible for creating communication with RabbitMQ
+* Standard implementation
+* */
 @Component
 public class RabbitMQConection {
 	
